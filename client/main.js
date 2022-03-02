@@ -15,5 +15,24 @@ function render(data) {
         `);
     }).join(' ');
 
-    document.getElementById("message").innerHTML = html;
+    let div = document.getElementById("message");
+    div.innerHTML = html;
+    div.scrollTop = div.scrollHeight;
 }
+
+let form = document.querySelector('#formSubmit');
+
+form.addEventListener('click', function(e) {
+    e.preventDefault();
+    let message = {
+        nickname: document.getElementById('nickname').value,
+        text: document.getElementById('text').value
+    };
+
+    document.getElementById('nickname').style.display = 'none';
+
+    socket.emit('add-message', message);
+
+    document.getElementById('text').value = '';
+    return false;
+});

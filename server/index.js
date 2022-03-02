@@ -6,10 +6,20 @@ const port = 3000;
 
 const server = require('http').Server(app);
 
-const io = require('socket.io')(server);
+const io = require('socket.io')(server, {
+    cors: {
+        origin: '*'
+    }
+});
 
 // Middleware
 app.use(express.static('client'));
+
+var messages = [{
+    id: 1,
+    text: 'Bienvenido al chat privado de socket.io y nodejs',
+    nickname: 'Bot - Fernando'
+}];
 
 app.get('/index', (req, res) => {
     res.status(200).send({
@@ -17,8 +27,10 @@ app.get('/index', (req, res) => {
     })
 });
 
-io.on('connection', (socket) => {
+io.on('connection', function(socket) {
     console.log(`El nodo Ip: ${socket.handshake.address} Se ha conectado`);
+
+    socket.emit('messages', messages);
 });
 
 server.listen(port, () => {

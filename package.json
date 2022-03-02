@@ -1,11 +1,19 @@
 {
-  "name": "sockets",
-  "version": "1.0.0",
-  "description": "Proyecto de chat con node y socket.io",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Fernando Lopez",
-  "license": "ISC"
+    "name": "sockets",
+    "version": "1.0.0",
+    "description": "Proyecto de chat con node y socket.io",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server/index.js"
+    },
+    "author": "Fernando Lopez",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.3",
+        "socket.io": "^4.4.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.15"
+    }
 }
